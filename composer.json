@@ -1,0 +1,16 @@
+{
+    "name": "jordifreixa/refactoring",
+    "authors": [
+        {
+            "name": "Jordi Freixa",
+            "email": "jordi.freixa@atrapalo.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {"Refactoring\\": "src/"}
+    },
+    "require": {},
+    "require-dev": {
+        "phpunit/phpunit": "^7.4"
+    }
+}
