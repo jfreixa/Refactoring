@@ -7,7 +7,7 @@ class Customer
     /** @var string */
     private $name;
     /** @var Rental[] */
-    private $rentals;
+    private $rentals = [];
 
     public function __construct(string $name)
     {
