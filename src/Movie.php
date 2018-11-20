@@ -33,4 +33,28 @@ class Movie
     {
         return $this->priceCode;
     }
+
+    public function charge($daysRented)
+    {
+        $result = 0;
+        switch ($this->priceCode()) {
+            case Movie::REGULAR:
+                $result += 2;
+                if ($daysRented > 2) {
+                    $result += ($daysRented - 2) * 1.5;
+                }
+                break;
+            case Movie::NEW_RELEASE:
+                $result += 3;
+                break;
+            case Movie::CHILDREN:
+                $result += 1.5;
+                if ($daysRented > 3) {
+                    $result += ($daysRented - 1) * 1.5;
+                }
+                break;
+        }
+
+        return $result;
+    }
 }
