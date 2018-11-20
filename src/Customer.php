@@ -26,15 +26,13 @@ class Customer
 
     public function statement(): string
     {
-        $frequentRenterPoints = 0;
         $result = "Rental Record for ".$this->name()."\n";
         foreach ($this->rentals as $rental) {
-            $frequentRenterPoints += $rental->frequentRenterPoints();
             $result .= "\t".$rental->movie()->title()."\t".$rental->charge()."\n";
         }
 
         $result .= "Amount owed is ".$this->totalAmount()."\n";
-        $result .= "You earned ".$frequentRenterPoints." frequent renter points";
+        $result .= "You earned ".$this->frequentRenterPoints()." frequent renter points";
 
         return $result;
     }
@@ -47,5 +45,15 @@ class Customer
         }
 
         return $totalAmount;
+    }
+
+    private function frequentRenterPoints()
+    {
+        $frequentRenterPoints = 0;
+        foreach ($this->rentals as $rental) {
+            $frequentRenterPoints += $rental->frequentRenterPoints();
+        }
+
+        return $frequentRenterPoints;
     }
 }
