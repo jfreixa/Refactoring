@@ -4,19 +4,15 @@ namespace Refactoring;
 
 class Movie
 {
-    const REGULAR = 0;
-    const NEW_RELEASE = 1;
-    const CHILDREN = 2;
-
     /** @var string */
     private $title;
-    /** @var int */
-    private $priceCode;
+    /** @var Price */
+    private $price;
 
-    public function __construct(string $title, int $priceCode)
+    public function __construct(string $title, Price $price)
     {
         $this->title = $title;
-        $this->priceCode = $priceCode;
+        $this->price =  $price;
     }
 
     public function title(): string
@@ -24,13 +20,13 @@ class Movie
         return $this->title;
     }
 
-    public function setPriceCode(int $priceCode): void
+    public function charge($daysRented)
     {
-        $this->priceCode = $priceCode;
+        return $this->price->charge($daysRented);
     }
 
-    public function priceCode(): int
+    public function frequentRenterPoints($daysRented)
     {
-        return $this->priceCode;
+        return $this->price->frequentRenterPoints($daysRented);
     }
 }

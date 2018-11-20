@@ -26,45 +26,34 @@ class Customer
 
     public function statement(): string
     {
-        $totalAmount = 0;
-        $frequentRenterPoints = 0;
         $result = "Rental Record for ".$this->name()."\n";
-        foreach ($this->rentals as $each) {
-            $thisAmount = 0;
-            switch ($each->movie()->priceCode()) {
-                case Movie::REGULAR:
-                    $thisAmount += 2;
-                    if ($each->daysRented() > 2) {
-                        $thisAmount += ($each->daysRented() - 2) * 1.5;
-                    }
-                    break;
-                case Movie::NEW_RELEASE:
-                    $thisAmount += 3;
-                    break;
-                case Movie::CHILDREN:
-                    $thisAmount += 1.5;
-                    if ($each->daysRented() > 3) {
-                        $thisAmount += ($each->daysRented() - 1) * 1.5;
-                    }
-                    break;
-            }
-
-            // add frequent renter points
-            $frequentRenterPoints++;
-
-            // add bonus for a two day new release rental
-            if (($each->movie()->priceCode() == Movie::NEW_RELEASE) &&
-                $each->DaysRented() > 1) {
-                $frequentRenterPoints++;
-            }
-            // show figures for this rental
-            $result .= "\t".$each->movie()->title()."\t".$thisAmount."\n";
-            $totalAmount += $thisAmount;
+        foreach ($this->rentals as $rental) {
+            $result .= "\t".$rental->movie()->title()."\t".$rental->charge()."\n";
         }
 
-        $result .= "Amount owed is ".$totalAmount."\n";
-        $result .= "You earned ".$frequentRenterPoints." frequent renter points";
+        $result .= "Amount owed is ".$this->totalAmount()."\n";
+        $result .= "You earned ".$this->frequentRenterPoints()." frequent renter points";
 
         return $result;
+    }
+
+    private function totalAmount()
+    {
+        $totalAmount = 0;
+        foreach ($this->rentals as $rental) {
+            $totalAmount += $rental->charge();
+        }
+
+        return $totalAmount;
+    }
+
+    private function frequentRenterPoints()
+    {
+        $frequentRenterPoints = 0;
+        foreach ($this->rentals as $rental) {
+            $frequentRenterPoints += $rental->frequentRenterPoints();
+        }
+
+        return $frequentRenterPoints;
     }
 }

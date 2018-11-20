@@ -3,13 +3,14 @@
 namespace Tests;
 
 use Refactoring\Movie;
+use Refactoring\Price;
 
 final class MovieBuilder
 {
     /** @var string */
     private $title;
-    /** @var int */
-    private $priceCode;
+    /** @var Price */
+    private $price;
 
     public function title(string $title): self
     {
@@ -18,15 +19,15 @@ final class MovieBuilder
         return $this;
     }
 
-    public function priceCode(int $priceCode): self
+    public function price(Price $price): self
     {
-        $this->priceCode = $priceCode;
+        $this->price = $price;
 
         return $this;
     }
 
     public function build(): Movie
     {
-        return new Movie($this->title, $this->priceCode);
+        return new Movie($this->title, $this->price);
     }
 }
