@@ -20,11 +20,6 @@ class Rental
         return $this->movie;
     }
 
-    public function daysRented(): int
-    {
-        return $this->daysRented;
-    }
-
     public function charge()
     {
         return $this->movie->charge($this->daysRented);
