@@ -10,8 +10,8 @@ class Movie
 
     /** @var string */
     private $title;
-    /** @var int */
-    private $priceCode;
+    /** @var Price */
+    private $price;
 
     public function __construct(string $title, int $priceCode)
     {
@@ -24,14 +24,24 @@ class Movie
         return $this->title;
     }
 
-    public function setPriceCode(int $priceCode): void
+    public function setPriceCode(int $price): void
     {
-        $this->priceCode = $priceCode;
+        switch ($price) {
+            case Movie::REGULAR:
+                $this->price = new RegularPrice();
+                break;
+            case Movie::NEW_RELEASE:
+                $this->price = new NewReleasePrice();
+                break;
+            case Movie::CHILDREN:
+                $this->price = new ChildrenPrice();
+                break;
+        }
     }
 
     public function priceCode(): int
     {
-        return $this->priceCode;
+        return $this->price->priceCode();
     }
 
     public function charge($daysRented)
