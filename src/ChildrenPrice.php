@@ -8,4 +8,14 @@ final class ChildrenPrice implements Price
     {
         return Movie::CHILDREN;
     }
+
+    public function charge($daysRented)
+    {
+        $result = 1.5;
+        if ($daysRented > 3) {
+            $result += ($daysRented - 1) * 1.5;
+        }
+
+        return $result;
+    }
 }

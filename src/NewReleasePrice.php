@@ -8,4 +8,9 @@ final class NewReleasePrice implements Price
     {
         return Movie::NEW_RELEASE;
     }
+
+    public function charge($daysRented)
+    {
+        return 3;
+    }
 }
