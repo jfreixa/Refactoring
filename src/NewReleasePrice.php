@@ -11,12 +11,10 @@ final class NewReleasePrice implements Price
 
     public function frequentRenterPoints($daysRented)
     {
-        $frequentRenterPoints = 1;
-
         if ($daysRented > 1) {
-            $frequentRenterPoints++;
+            return 2;
         }
 
-        return $frequentRenterPoints;
+        return 1;
     }
 }
