@@ -30,7 +30,7 @@ class Customer
         $frequentRenterPoints = 0;
         $result = "Rental Record for ".$this->name()."\n";
         foreach ($this->rentals as $each) {
-            $thisAmount = $this->amountFor($each);
+            $thisAmount = $each->charge();
 
             // add frequent renter points
             $frequentRenterPoints++;
@@ -51,27 +51,4 @@ class Customer
         return $result;
     }
 
-    private function amountFor(Rental $rental)
-    {
-        $result = 0;
-        switch ($rental->movie()->priceCode()) {
-            case Movie::REGULAR:
-                $result += 2;
-                if ($rental->daysRented() > 2) {
-                    $result += ($rental->daysRented() - 2) * 1.5;
-                }
-                break;
-            case Movie::NEW_RELEASE:
-                $result += 3;
-                break;
-            case Movie::CHILDREN:
-                $result += 1.5;
-                if ($rental->daysRented() > 3) {
-                    $result += ($rental->daysRented() - 1) * 1.5;
-                }
-                break;
-        }
-
-        return $result;
-    }
 }
