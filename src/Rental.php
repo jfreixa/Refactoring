@@ -32,14 +32,7 @@ class Rental
 
     public function frequentRenterPoints()
     {
-        $frequentRenterPoints = 1;
-
-        if (($this->movie()->priceCode() == Movie::NEW_RELEASE) &&
-            $this->DaysRented() > 1) {
-            $frequentRenterPoints++;
-        }
-
-        return $frequentRenterPoints;
+        return $this->movie->frequentRenterPoints($this->daysRented);
     }
 
 }

@@ -57,4 +57,16 @@ class Movie
 
         return $result;
     }
+
+    public function frequentRenterPoints($daysRented)
+    {
+        $frequentRenterPoints = 1;
+
+        if (($this->priceCode() == Movie::NEW_RELEASE) &&
+            $daysRented > 1) {
+            $frequentRenterPoints++;
+        }
+
+        return $frequentRenterPoints;
+    }
 }
