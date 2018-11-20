@@ -29,10 +29,10 @@ class Customer
         $totalAmount = 0;
         $frequentRenterPoints = 0;
         $result = "Rental Record for ".$this->name()."\n";
-        foreach ($this->rentals as $each) {
-            $frequentRenterPoints += $each->frequentRenterPoints();
-            $result .= "\t".$each->movie()->title()."\t".$each->charge()."\n";
-            $totalAmount += $each->charge();
+        foreach ($this->rentals as $rental) {
+            $frequentRenterPoints += $rental->frequentRenterPoints();
+            $result .= "\t".$rental->movie()->title()."\t".$rental->charge()."\n";
+            $totalAmount += $rental->charge();
         }
 
         $result .= "Amount owed is ".$totalAmount."\n";
