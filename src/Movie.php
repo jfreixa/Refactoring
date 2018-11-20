@@ -16,7 +16,7 @@ class Movie
     public function __construct(string $title, int $priceCode)
     {
         $this->title = $title;
-        $this->priceCode = $priceCode;
+        $this->setPriceCode($priceCode);
     }
 
     public function title(): string
@@ -62,11 +62,12 @@ class Movie
     {
         $frequentRenterPoints = 1;
 
-        if (($this->priceCode() == Movie::NEW_RELEASE) &&
-            $daysRented > 1) {
+        if (($this->priceCode() == Movie::NEW_RELEASE) && $daysRented > 1) {
             $frequentRenterPoints++;
         }
 
         return $frequentRenterPoints;
     }
+
+
 }
