@@ -30,24 +30,7 @@ class Customer
         $frequentRenterPoints = 0;
         $result = "Rental Record for ".$this->name()."\n";
         foreach ($this->rentals as $each) {
-            $thisAmount = 0;
-            switch ($each->movie()->priceCode()) {
-                case Movie::REGULAR:
-                    $thisAmount += 2;
-                    if ($each->daysRented() > 2) {
-                        $thisAmount += ($each->daysRented() - 2) * 1.5;
-                    }
-                    break;
-                case Movie::NEW_RELEASE:
-                    $thisAmount += 3;
-                    break;
-                case Movie::CHILDREN:
-                    $thisAmount += 1.5;
-                    if ($each->daysRented() > 3) {
-                        $thisAmount += ($each->daysRented() - 1) * 1.5;
-                    }
-                    break;
-            }
+            $thisAmount = $this->amountFor($each);
 
             // add frequent renter points
             $frequentRenterPoints++;
@@ -66,5 +49,29 @@ class Customer
         $result .= "You earned ".$frequentRenterPoints." frequent renter points";
 
         return $result;
+    }
+
+    private function amountFor(Rental $each)
+    {
+        $thisAmount = 0;
+        switch ($each->movie()->priceCode()) {
+            case Movie::REGULAR:
+                $thisAmount += 2;
+                if ($each->daysRented() > 2) {
+                    $thisAmount += ($each->daysRented() - 2) * 1.5;
+                }
+                break;
+            case Movie::NEW_RELEASE:
+                $thisAmount += 3;
+                break;
+            case Movie::CHILDREN:
+                $thisAmount += 1.5;
+                if ($each->daysRented() > 3) {
+                    $thisAmount += ($each->daysRented() - 1) * 1.5;
+                }
+                break;
+        }
+
+        return $thisAmount;
     }
 }
