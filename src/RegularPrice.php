@@ -18,4 +18,9 @@ final class RegularPrice implements Price
 
         return $result;
     }
+
+    public function frequentRenterPoints($daysRented)
+    {
+        return 1;
+    }
 }

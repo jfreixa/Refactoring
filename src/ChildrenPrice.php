@@ -18,4 +18,9 @@ final class ChildrenPrice implements Price
 
         return $result;
     }
+
+    public function frequentRenterPoints($daysRented)
+    {
+        return 1;
+    }
 }

@@ -51,13 +51,7 @@ class Movie
 
     public function frequentRenterPoints($daysRented)
     {
-        $frequentRenterPoints = 1;
-
-        if (($this->priceCode() == Movie::NEW_RELEASE) && $daysRented > 1) {
-            $frequentRenterPoints++;
-        }
-
-        return $frequentRenterPoints;
+        return $this->price->frequentRenterPoints($daysRented);
     }
 
 
