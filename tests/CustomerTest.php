@@ -3,7 +3,9 @@
 namespace Tests;
 
 use PHPUnit\Framework\TestCase;
-use Refactoring\Movie;
+use Refactoring\ChildrenPrice;
+use Refactoring\NewReleasePrice;
+use Refactoring\RegularPrice;
 
 final class CustomerTest extends TestCase
 {
@@ -29,7 +31,7 @@ final class CustomerTest extends TestCase
     {
         $movie = (new MovieBuilder())
             ->title(self::MOVIE_NAME)
-            ->priceCode(Movie::REGULAR)
+            ->price(new RegularPrice())
             ->build();
         $rental = (new RentalBuilder())
             ->movie($movie)
@@ -55,7 +57,7 @@ final class CustomerTest extends TestCase
     {
         $movie = (new MovieBuilder())
             ->title(self::MOVIE_NAME)
-            ->priceCode(Movie::REGULAR)
+            ->price(new RegularPrice())
             ->build();
         $rental = (new RentalBuilder())
             ->movie($movie)
@@ -81,7 +83,7 @@ final class CustomerTest extends TestCase
     {
         $movie = (new MovieBuilder())
             ->title(self::MOVIE_NAME)
-            ->priceCode(Movie::REGULAR)
+            ->price(new RegularPrice())
             ->build();
         $rental = (new RentalBuilder())
             ->movie($movie)
@@ -107,7 +109,7 @@ final class CustomerTest extends TestCase
     {
         $movie = (new MovieBuilder())
             ->title(self::MOVIE_NAME)
-            ->priceCode(Movie::NEW_RELEASE)
+            ->price(new NewReleasePrice())
             ->build();
         $rental = (new RentalBuilder())
             ->movie($movie)
@@ -133,7 +135,7 @@ final class CustomerTest extends TestCase
     {
         $movie = (new MovieBuilder())
             ->title(self::MOVIE_NAME)
-            ->priceCode(Movie::NEW_RELEASE)
+            ->price(new NewReleasePrice())
             ->build();
         $rental = (new RentalBuilder())
             ->movie($movie)
@@ -159,7 +161,7 @@ final class CustomerTest extends TestCase
     {
         $movie = (new MovieBuilder())
             ->title(self::MOVIE_NAME)
-            ->priceCode(Movie::NEW_RELEASE)
+            ->price(new NewReleasePrice())
             ->build();
         $rental = (new RentalBuilder())
             ->movie($movie)
@@ -185,7 +187,7 @@ final class CustomerTest extends TestCase
     {
         $movie = (new MovieBuilder())
             ->title(self::MOVIE_NAME)
-            ->priceCode(Movie::CHILDREN)
+            ->price(new ChildrenPrice())
             ->build();
         $rental = (new RentalBuilder())
             ->movie($movie)
@@ -211,7 +213,7 @@ final class CustomerTest extends TestCase
     {
         $movie = (new MovieBuilder())
             ->title(self::MOVIE_NAME)
-            ->priceCode(Movie::CHILDREN)
+            ->price(new ChildrenPrice())
             ->build();
         $rental = (new RentalBuilder())
             ->movie($movie)
@@ -237,7 +239,7 @@ final class CustomerTest extends TestCase
     {
         $movie = (new MovieBuilder())
             ->title(self::MOVIE_NAME)
-            ->priceCode(Movie::CHILDREN)
+            ->price(new ChildrenPrice())
             ->build();
         $rental = (new RentalBuilder())
             ->movie($movie)
@@ -264,7 +266,7 @@ final class CustomerTest extends TestCase
         $regularMovieName = "regularMovieName";
         $regularMovie = (new MovieBuilder())
             ->title($regularMovieName)
-            ->priceCode(Movie::REGULAR)
+            ->price(new RegularPrice())
             ->build();
         $regularRental = (new RentalBuilder())
             ->movie($regularMovie)
@@ -274,7 +276,7 @@ final class CustomerTest extends TestCase
         $newReleaseMovieName = "newReleaseMovieName";
         $newReleaseMovie = (new MovieBuilder())
             ->title($newReleaseMovieName)
-            ->priceCode(Movie::NEW_RELEASE)
+            ->price(new NewReleasePrice())
             ->build();
         $newReleaseRental = (new RentalBuilder())
             ->movie($newReleaseMovie)
@@ -284,7 +286,7 @@ final class CustomerTest extends TestCase
         $childrenMovieName = "childrenMovieName";
         $childrenMovie = (new MovieBuilder())
             ->title($childrenMovieName)
-            ->priceCode(Movie::CHILDREN)
+            ->price(new ChildrenPrice())
             ->build();
         $childrenRental = (new RentalBuilder())
             ->movie($childrenMovie)

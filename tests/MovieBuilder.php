@@ -3,6 +3,7 @@
 namespace Tests;
 
 use Refactoring\Movie;
+use Refactoring\Price;
 
 final class MovieBuilder
 {
@@ -18,9 +19,9 @@ final class MovieBuilder
         return $this;
     }
 
-    public function priceCode(int $priceCode): self
+    public function price(Price $price): self
     {
-        $this->priceCode = $priceCode;
+        $this->priceCode = $price->priceCode();
 
         return $this;
     }
