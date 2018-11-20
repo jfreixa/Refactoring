@@ -30,12 +30,7 @@ class Customer
         $frequentRenterPoints = 0;
         $result = "Rental Record for ".$this->name()."\n";
         foreach ($this->rentals as $each) {
-            $frequentRenterPoints++;
-
-            if (($each->movie()->priceCode() == Movie::NEW_RELEASE) &&
-                $each->DaysRented() > 1) {
-                $frequentRenterPoints++;
-            }
+            $frequentRenterPoints += $each->frequentRenterPoints();
             $result .= "\t".$each->movie()->title()."\t".$each->charge()."\n";
             $totalAmount += $each->charge();
         }
